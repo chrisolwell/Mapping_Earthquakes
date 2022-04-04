@@ -19,8 +19,8 @@ let baseMaps = {
 };
 // Create the map object with a center and zoom level.
 let map = L.map("mapid", {
-    center: [44.0, -80.0],
-    zoom: 10,
+    center: [39.0, -98.5],
+    zoom: 3,
     layers: [streets]
   });
 //accessing the toronto airline routes GeoJSON URL
@@ -35,8 +35,8 @@ let myStyle = {
     weight:2
 };
 //Grabbing our geoJSON data
-d3.json(torontoHoods).then(function(data) {
-    console.log(data);
+d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
+    // console.log(data);
     //creating a geoJSON layer with the retrieved data.
     L.geoJSON(data).addTo(map);
 });
