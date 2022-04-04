@@ -37,37 +37,6 @@ let myStyle = {
 //Grabbing our geoJSON data
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
     // console.log(data);
-    //This function returns the style data for each of the quakes we plot
-    //the map. we pass the mag of the quake into a funtion 
-    //to calculate the radius.
-    function styleInfo(feature) {
-        return {
-            opacity: 1,
-            fillOpacity: 1,
-            fillColor: "#ffae42",
-            color: "#000000",
-            radius: getRadius(feature.properties.mag),
-            stroke: true,
-            weight: 0.5
-        };
-    }
-    //this function determines the radius of the earthquake marker based on
-    //its magnitude. Quakes with a mag of 0 will be plotted with a radius of 1.
-    function getRadius(magnitude){
-        if (magnitude === 0) {
-            return 1;
-        }
-        return magnitude * 4;
-    }
     //creating a geoJSON layer with the retrieved data.
-        L.geoJSON(data, {
-
-    //we turn each layer into a circleMarker on the map.
-    pointToLayer: function(feature, latlng) {
-            console.log(data);
-            return L.circleMarker(latlng);
-        },
-    //set the style for each circleMarker using our stylInfo fucntion.
-    style: styleInfo
-    }).addTo(map);
+    L.geoJSON(data).addTo(map);
 });
